@@ -11,11 +11,11 @@ lista.addMovie(new Movie('Como Eu Era Antes de Você', ' Emilia Clarke e Sam Cla
 const router = {
     addMovie: (req, res) => {
         try {
-            const { title, actor, duration, gender } =  req.body;
-            if(!title || !actor || !duration || !gender) {
+            const { title, actor, duration, genders } =  req.body;
+            if(!title || !actor || !duration || !genders) {
                 throw new Error('Preencha todos os campos!')
             }
-            const film = new Movie (title, actor, duration, gender)
+            const film = new Movie (title, actor, duration, genders)
             lista.addMovie(film);
             res.status(200).json({message: "Criado com sucesso", film });
         } catch (error) {

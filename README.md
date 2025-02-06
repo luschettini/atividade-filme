@@ -3,21 +3,19 @@
 ### Objetivo:
 O objetivo deste projeto é desenvolver uma aplicação sobre filmes que seja bem estruturada e siga as melhores práticas de desenvolvimento de software.
 
-## Estrutura do Projeto
-##### Entidade Principal
-Filme
-##### title: Título do filme
+### Estrutura do Projeto:
 
-##### actor: Ator principal
+## 1. Diagrama de Classes
+O esquema a seguir representa as entidades do sistema e suas interações:
 
-##### duration:Duração do filme
-
-##### gender: Gênero do filme
-
-### Diagrama de Classes
+![image](https://github.com/user-attachments/assets/0a3e26b2-e6ce-4260-b541-18265cd7b4db)
 
 
-### Arquitetura MVC
+-`Movie`: Principal Entidade, onde suas propriedades são: id, tittle, actor, duration e gender.
+
+-`MovieList`: Administra um catálogo de filmes e executa operações de manipulação de dados (CRUD).
+
+## 2. Arquitetura MVC
 ```
 src/
 ├── controllers/
@@ -29,52 +27,46 @@ src/
 │   ├── MovieRoutes.js
 ├── server.js
 ```
-### API Endpoints
-
-### Listar Todos os Filmes
-
-#### GET:
-http://localhost:3000/api/movies
-#### Descrição: 
-Lista todos os filmes.
-
-### Corpo da Requisição (JSON):
-```json
-{
-        "id": "51994d8e-561f-46fa-81af-94d15299db72",
-        "title": "Como Eu Era Antes de Você",
-        "actor": "Emilia Clarke e Sam Claflin",
-        "duration": "01:50:00",
-        "gender": "Drama"
-    },
-    {
-        "title": "Diário de uma Paixão",
-        "actor": "Ryan Gosling e Rachel McAdams",
-        "duration": "02:30:00",
-        "gender": "Romance"
-    },
-    {
-        "title": "Cisne Negro",
-        "actor": "Natalie Portman",
-        "duration": "01:48:00",
-        "gender": "suspense"
-     }
+## 3. Dependências
+As seguintes dependências foram instaladas para garantir o funcionamento adequado do projeto:
 ```
+"dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "nodemon": "^3.1.9",
+    "uuid": "^11.0.5"
+}
+```
+## 4. ROUTES
+```
+router.get("/movies", movieController.getAllMovies);
+router.post("/movies", movieController.addMovie);
+router.put("/movies/:id", movieController.updateMovie);
+router.delete("/movies/:id", movieController.deleteMovie);
+router.get("/movies/:id", movieController.getMovieById);
+```
+## 5. Formato JSON
 
-### Encontrar Filme pelo ID
-#### GET: 
+## 6. Formato XML
+
+## 7. Postman
+Foram criadas coleções de requisições para testar a API.
+
+### Endpoints
+
+-`GET`: Listar todos os filmes
+http://localhost:3000/api/movies
+
+-`GET`: Buscar filme pelo ID
 http://localhost:3000/api/movies/4e01796f-9044-49b3-b801-4de2343a6a1c
-#### Descrição:
-Encontra um filme pelo seu ID.
 
-### Adicionar Filme
-#### POST: 
+Body (JSON):
+
+-`POST`: Adicionar um filme
 http://localhost:3000/api/movies/
-#### Descrição: 
-Adiciona um novo filme.
 
-### Corpo da Requisição (JSON):
-```json
+```
 {
     "title": "Cisne Negro",
     "actor": "Natalie Portman",
@@ -82,28 +74,12 @@ Adiciona um novo filme.
     "gender": "suspense"
 }
 ```
-
-### Deletar Filme
-#### DELETE:
+-`DELETE`: Remover um filme
 http://localhost:2080/api/songs/4c2b1b28-634c-44a7-85b8-f84e1bc3da8e
-#### Descrição: 
-Deleta um filme pelo seu ID. Nesse caso, foi deletado o filme Diário de uma Paixão.
 
-
-### Atualizar Filme
-#### PUT: 
+-`PUT`:  Atualizar um filme
 http://localhost:2080/api/songs/4c2b1b28-634c-44a7-85b8-f84e1bc3da8e
-#### Descrição: 
-Atualiza as informações de um filme pelo seu ID.
 
-### Corpo da Requisição (JSON):
-```json
-{
-    "title": "Cisne Negro",
-    "actor": "Natalie Portman",
-    "duration": "01:48:00",
-    "gender": "suspense e terror psicológico"
-}
-```
+
 
 

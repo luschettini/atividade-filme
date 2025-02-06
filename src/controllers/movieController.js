@@ -11,15 +11,17 @@ lista.addMovie(new Movie('Como Eu Era Antes de Você', ' Emilia Clarke e Sam Cla
 const router = {
     addMovie: (req, res) => {
         try {
-            const { title, actor, duration, genders } =  req.body;
-            if(!title || !actor || !duration || !genders) {
-                throw new Error('Preencha todos os campos!')
+            const { title, actor, duration, gender } =  req.body;
+            if(!title || !actor || !duration || !gender) {
+                throw new Error('Preencha todos os campos!');
             }
-            const film = new Movie (title, actor, duration, genders)
+            const film= new Movie (title, actor, duration, gender)
             lista.addMovie(film);
             res.status(200).json({message: "Criado com sucesso", film });
         } catch (error) {
-            res.status(400).json({message: "Erro ao adicionar um filme", error});
+            res.status(400).json({message: "Erro ao adicionar um filme",
+            error: error.message
+        });
         }
     },
 
@@ -28,7 +30,9 @@ const router = {
             const movies = lista.getAllMovies();
             res.status(200).json(movies);
         } catch (error) {
-            res.status(404).json({message: 'Erro ao buscar filmes', error});
+            res.status(404).json({message: 'Erro ao buscar filmes', 
+            error: error.message,
+        });
         }
     },
 
@@ -39,7 +43,7 @@ const router = {
         } catch (error) {
             res.status(404).json({
                 message: 'Erro ao buscar filme por id',
-                error
+                error: error.message,
             });
         }
     },
@@ -48,22 +52,28 @@ const router = {
         try {
             res.status(200).json(lista.updateMovie(req.params.id, req.body));
         } catch (error) {
-            res.status(404).json('Erro ao atualizar', error)
+            res.status(404).json({
+            message: 'Erro ao atualizar filme',
+            error: error.message,
+        });
         }
     },
 
     deleteMovie: (req, res) => {
         try {
-            lista.deleteMovie(req.params.id);
+            const movie = req.params.id;
+            lista.deleteMovie(movie);
             res.status(200).json({
-                message: 'Filme deletado com sucesso'
-            })
+                message: 'Filme deletado com sucesso',
+                movie,
+            });
         } catch (error) {
-            res.status(404).json('Erro ao deletar filme', error);
+            res.status(404).json({
+            message: 'Erro ao deletar filme',
+            error: error.message,
+            });
         }
     },
-
-
 };
 
 module.exports = router;

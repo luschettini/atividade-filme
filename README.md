@@ -5,17 +5,18 @@ O objetivo deste projeto é desenvolver uma aplicação sobre filmes que seja be
 
 ### Estrutura do Projeto:
 
-## 1. Diagrama de Classes
+##  Diagrama de Classes
 O esquema a seguir representa as entidades do sistema e suas interações:
 
-![image](https://github.com/user-attachments/assets/0a3e26b2-e6ce-4260-b541-18265cd7b4db)
+![image](https://github.com/user-attachments/assets/2c7e874a-6f7b-4d01-b9f2-32f52d1aec41)
+
 
 
 -`Movie`: Principal Entidade, onde suas propriedades são: id, tittle, actor, duration e gender.
 
 -`MovieList`: Administra um catálogo de filmes e executa operações de manipulação de dados (CRUD).
 
-## 2. Arquitetura MVC
+## Arquitetura MVC
 ```
 src/
 ├── controllers/
@@ -27,7 +28,7 @@ src/
 │   ├── MovieRoutes.js
 ├── server.js
 ```
-## 3. Dependências
+##  Dependências
 As seguintes dependências foram instaladas para garantir o funcionamento adequado do projeto:
 ```
 "dependencies": {
@@ -38,7 +39,7 @@ As seguintes dependências foram instaladas para garantir o funcionamento adequa
     "uuid": "^11.0.5"
 }
 ```
-## 4. ROUTES
+## ROUTES
 ```
 router.get("/movies", movieController.getAllMovies);
 router.post("/movies", movieController.addMovie);
@@ -46,39 +47,93 @@ router.put("/movies/:id", movieController.updateMovie);
 router.delete("/movies/:id", movieController.deleteMovie);
 router.get("/movies/:id", movieController.getMovieById);
 ```
-## 5. Formato JSON
 
-## 6. Formato XML
 
-## 7. Postman
+## Formato XML
+
+## Postman
 Foram criadas coleções de requisições para testar a API.
 
-### Endpoints
+### Listar Todos os Filmes
 
--`GET`: Listar todos os filmes
-http://localhost:3000/api/movies
-
--`GET`: Buscar filme pelo ID
-http://localhost:3000/api/movies/4e01796f-9044-49b3-b801-4de2343a6a1c
-
-Body (JSON):
-
--`POST`: Adicionar um filme
-http://localhost:3000/api/movies/
-
+```http
+GET http://localhost:3000/api/movies
 ```
+**Descrição**: Lista todos os filmes disponíveis na base de dados.
+
+![Captura de tela 2025-02-06 204702](https://github.com/user-attachments/assets/462e977b-6d98-458c-a9cf-ce2ea829a0fe)
+
+###  Encontrar um Filme pelo ID
+
+```http
+GET http://localhost:3000/movies/{id}
+```
+
+**Fatores**:
+- `{id}`: ID do filme a ser buscado.
+
+**Descrição**: Localiza um filme específico através do ID fornecido.
+
+![image](https://github.com/user-attachments/assets/7d26b9e6-c695-47b2-81cf-2208d894585d)
+
+###  Adicionar um Filme
+
+```http
+POST http://localhost:3000/api/movies/
+```
+
+**Body (JSON):**
+```json
 {
     "title": "Cisne Negro",
     "actor": "Natalie Portman",
     "duration": "01:48:00",
-    "gender": "suspense"
+    "gender": "Suspense"
 }
 ```
--`DELETE`: Remover um filme
-http://localhost:2080/api/songs/4c2b1b28-634c-44a7-85b8-f84e1bc3da8e
 
--`PUT`:  Atualizar um filme
-http://localhost:2080/api/songs/4c2b1b28-634c-44a7-85b8-f84e1bc3da8e
+**Descrição**: Insere um novo filme na base de dados.
+
+![image](https://github.com/user-attachments/assets/55e04c8b-68b4-434a-b87c-302deba702c0)
+
+### Atualizar um Filme
+
+```http
+PUT http://localhost:3000/api/movies/{id}
+```
+
+**Fatores**:
+- `{id}`: ID do filme a ser modificado.
+**Body (JSON):**
+```json
+{
+    "title": "Título",
+    "actor": "Ator",
+    "duration": "Duração",
+    "gender": "Gênero"
+}
+```
+
+**Descrição**: Realiza a atualização de um filme na base de dados.
+
+![image](https://github.com/user-attachments/assets/f317ca8a-168a-44f7-afe2-7cbf17815526)
+
+###  Deletar um Filme
+
+```http
+DELETE http://localhost:3000/api/movies/{id}
+```
+
+**Fatores**:
+- `{id}`: ID do filme a ser deletado.
+
+**Descrição**: Elimina um filme específico da base de dados.
+
+![image](https://github.com/user-attachments/assets/f148c553-d574-4eec-a425-799f61b53c70)
+
+
+---
+
 
 
 

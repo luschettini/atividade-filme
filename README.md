@@ -8,7 +8,8 @@ O objetivo deste projeto é desenvolver uma aplicação sobre filmes que seja be
 ##  Diagrama de Classes
 O esquema a seguir representa as entidades do sistema e suas interações:
 
-![image](https://github.com/user-attachments/assets/2c7e874a-6f7b-4d01-b9f2-32f52d1aec41)
+<img width="429" alt="image" src="https://github.com/user-attachments/assets/fe7a4427-642b-435d-b2a2-06a7f1cdf1c7" />
+
 
 
 
@@ -47,9 +48,6 @@ router.put("/movies/:id", movieController.updateMovie);
 router.delete("/movies/:id", movieController.deleteMovie);
 router.get("/movies/:id", movieController.getMovieById);
 ```
-
-
-## Formato XML
 
 ## Postman
 Foram criadas coleções de requisições para testar a API.
@@ -131,9 +129,21 @@ DELETE http://localhost:3000/api/movies/{id}
 
 ![image](https://github.com/user-attachments/assets/f148c553-d574-4eec-a425-799f61b53c70)
 
-
 ---
 
+## XML
+
+### Adicionar Filme
+
+<Response>
+    <Message>Filme adicionado com sucesso</Message>
+    <Movie>
+        <Title>Nome do Filme</Title>
+        <Actor>Nome do Ator</Actor>
+        <Duration>Duração</Duration>
+        <Genre>Gênero</Genre>
+    </Movie>
+</Response>
 
 
 

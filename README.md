@@ -135,6 +135,7 @@ DELETE http://localhost:3000/api/movies/{id}
 
 ### Adicionar Filme
 
+```
 <Response>
     <Message>Filme adicionado com sucesso</Message>
     <Movie>
@@ -145,6 +146,7 @@ DELETE http://localhost:3000/api/movies/{id}
     </Movie>
 </Response>
 
+```
 
 
 
